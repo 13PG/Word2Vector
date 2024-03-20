@@ -12,8 +12,8 @@ class WordVector:
         self.dataset = DataLoader().dataset[:1000]
         self.min_count = 5
         self.window_size = 5
-        self.word_demension = 200
-        self.embedding_path = 'model/word2word_wordvec.bin'
+        self.word_demension = 200                                       #最终词语生成的向量维度【一开始维度更高,用pca后才降到了200维】
+        self.embedding_path = 'model/word2word_wordvec.bin'             #指定存放模型的路径
     #统计总词数
     def build_word_dict(self):
         words = []
@@ -94,3 +94,4 @@ class WordVector:
 
 vec = WordVector()
 vec.train_embedding()
+
