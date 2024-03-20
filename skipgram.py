@@ -8,7 +8,11 @@ import collections
 import math
 import random
 import numpy as np
-import tensorflow as tf
+
+## 直接import tensorflow会报错，显示很多属性没有,要改成下面的语句
+import tensorflow._api.v2.compat.v1 as tf
+tf.compat.v1.disable_eager_execution()
+
 from load_data import *
 
 class SkipGram:
