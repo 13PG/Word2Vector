@@ -2,7 +2,7 @@
 # coding: utf-8
 # File: word_cluster.py
 # Author: lhy<lhy_in_blcu@126.com,https://huangyong.github.io>
-# Date: 18-4-25
+# Date: 18-4-25 
 import numpy as np
 
 class WordCluster:
