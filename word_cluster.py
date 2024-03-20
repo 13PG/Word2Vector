@@ -7,12 +7,12 @@ import numpy as np
 
 class WordCluster:
     def __init__(self):
-        self.embedding_path = 'model/word2word_wordvec.bin'
-        self.embedding_path = 'model/word2doc_wordvec.bin'
-        self.embedding_path = 'model/skipgram_wordvec.bin'
+        # self.embedding_path = 'model/word2word_wordvec.bin'
+        # self.embedding_path = 'model/word2doc_wordvec.bin'
+        # self.embedding_path = 'model/skipgram_wordvec.bin'
         self.embedding_path = 'model/cbow_wordvec.bin'
         self.word_embedding_dict, self.word_dict, self.word_embeddings = self.load_model(self.embedding_path)
-        self.similar_num = 10
+        self.similar_num = 10            #选最相近的similar_num个词汇
 
     #加载词向量文件
     def load_model(self, embedding_path):
