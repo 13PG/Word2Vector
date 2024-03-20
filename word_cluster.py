@@ -8,11 +8,11 @@ import numpy as np
 class WordCluster:
     def __init__(self):
         # self.embedding_path = 'model/word2word_wordvec.bin'
-        # self.embedding_path = 'model/word2doc_wordvec.bin'
+        self.embedding_path = 'model/word2doc_wordvec.bin'          #效果较好
         # self.embedding_path = 'model/skipgram_wordvec.bin'
-        self.embedding_path = 'model/cbow_wordvec.bin'
+        # self.embedding_path = 'model/cbow_wordvec.bin'
         self.word_embedding_dict, self.word_dict, self.word_embeddings = self.load_model(self.embedding_path)
-        self.similar_num = 10            #选最相近的similar_num个词汇
+        self.similar_num = 10
 
     #加载词向量文件
     def load_model(self, embedding_path):
@@ -30,7 +30,8 @@ class WordCluster:
             word_dict[index] = word
             index += 1
         return word_embedding_dict, word_dict, np.array(word_embeddings)
-    # 计算相似度
+    
+    # 计算相似度【这里还暂时没搞懂，它用的什么方式算距离】
     def similarity_cosine(self, word):
         A = self.word_embedding_dict[word]
         B = (self.word_embeddings).T
@@ -41,6 +42,7 @@ class WordCluster:
         sim_dict = {self.word_dict[index]: sim for index, sim in enumerate(sims.tolist()) if word != self.word_dict[index]}
         sim_words = sorted(sim_dict.items(), key=lambda asd: asd[1], reverse=True)[:self.similar_num]
         return sim_words
+    
     #获取相似词语
     def get_similar_words(self, word):
         if word in self.word_embedding_dict:
@@ -57,3 +59,11 @@ def test():
             print(word)
 
 test()
+
+'''
+这个项目实现文本聚类的原理：
+最后保存的模型其实就是把训练集里的每个分词都用向量表示出来了，
+然后你自己去输训练集里有的词,他才会根据聚类去算距离。
+不然你输入一个不存在的词,它是不会有联想功能的
+所以对你的的输入数据集要求比较高,你要想功能越强大,你要喂的数据就越多
+'''
